@@ -31,9 +31,9 @@ class DomainRecord extends AbstractApi
      *
      * @return DomainRecordEntity[]
      */
-    public function getAll(string $domainName)
+    public function getAll(string $domainName, string $Name = null, string $Type = null)
     {
-        $domainRecords = $this->get(\sprintf('domains/%s/records', $domainName));
+        $domainRecords = $this->get(\sprintf('domains/%s/records?name=%s&type=%s', $domainName, $Name, $Type));
 
         return \array_map(function ($domainRecord) {
             return new DomainRecordEntity($domainRecord);
